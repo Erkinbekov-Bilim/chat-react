@@ -1,0 +1,33 @@
+.messages {
+  height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+  cursor: grab;
+}
+
+.messages:active {
+  cursor: grabbing;
+}
+
+.messages::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #cfdee2;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: rgb(106, 52, 150);
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: rgb(106, 52, 150);
+}
+
+.empty-message {
+  color: #45265f;
+  font-size: 18px;
+  text-align: center;
+}

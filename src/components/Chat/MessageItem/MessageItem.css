@@ -1,0 +1,30 @@
+.message-block {
+  background: #aaafff;
+}
+
+.author {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 10px;
+  background: #ffff;
+  font-size: 22px;
+  position: relative;
+}
+
+.author-avatar {
+  text-transform: uppercase;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+}
+
+.message {
+  color: #45265f;
+  font-size: 18px;
+}
+
+.datetime {
+  font-size: 14px;
+}

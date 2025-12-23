@@ -2,3 +2,9 @@
   width: 500px;
   background: #7e85c7;
 }
+
+.error {
+  width: 100%;
+  background: #ff6464;
+  text-transform: capitalize;
+}

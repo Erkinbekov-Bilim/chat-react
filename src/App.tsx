@@ -1,13 +1,14 @@
-import './App.css'
-import ChatPage from './containers/ChatPage/ChatPage'
+import './App.css';
+import ChatPage from './containers/ChatPage/ChatPage';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
-
   return (
     <>
-      <ChatPage/>
+      <ToastContainer />
+      <ChatPage />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
