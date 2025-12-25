@@ -41,6 +41,8 @@ const ChatPage = () => {
     } catch (error) {
       console.log(error);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -54,23 +56,21 @@ const ChatPage = () => {
   }, [messages]);
 
   const sendMessage = async (message: IMessage): Promise<void> => {
+    setIsLoading(true);
     const data: URLSearchParams = new URLSearchParams();
 
     data.set('message', message.message);
     data.set('author', message.author);
 
     try {
-      setIsLoading(true);
       await fetch(MESSAGES_URL, {
         method: 'POST',
         body: data,
       });
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
-
+    
     setOwnMessage(message);
   };
 
