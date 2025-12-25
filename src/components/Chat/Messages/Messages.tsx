@@ -6,12 +6,17 @@ import './Messages.css';
 interface IChatProps {
   messages: IMessage[];
   ownMessage: IMessage;
+  isLoading: boolean;
 }
 
-const Messages: React.FC<IChatProps> = ({ messages, ownMessage }) => {
+const Messages: React.FC<IChatProps> = ({
+  messages,
+  ownMessage,
+  isLoading,
+}) => {
   let messagesArray: React.ReactNode = null;
 
-  if (messages.length === 0) {
+  if (messages.length === 0 && !isLoading) {
     messagesArray = (
       <>
         <p className="empty-message">Silence... Write your first message</p>

@@ -9,21 +9,20 @@ import Spinner from '../../components/Spinner/Spinner';
 const ChatPage = () => {
   const [ownMessage, setOwnMessage] = useState<IMessage>({} as IMessage);
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   let spinner: React.ReactNode = null;
 
   const getMessages = async (): Promise<void> => {
     try {
-      spinner = (
-        <div className="d-flex justify-content-center">
-          <Spinner />
-        </div>
-      );
+      setIsLoading(true);
       const response = await fetch(MESSAGES_URL);
       const data: IMessage[] = await response.json();
       setMessages(data);
       spinner = null;
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,12 +60,15 @@ const ChatPage = () => {
     data.set('author', message.author);
 
     try {
+      setIsLoading(true);
       await fetch(MESSAGES_URL, {
         method: 'POST',
         body: data,
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
 
     setOwnMessage(message);
@@ -74,8 +76,12 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page position-fixed top-50 start-50 translate-middle p-3 rounded-5 ">
-      {spinner}
-      <Messages messages={messages} ownMessage={ownMessage} />
+      <Messages
+        messages={messages}
+        ownMessage={ownMessage}
+        isLoading={isLoading}
+      />
+      {isLoading && <Spinner />}
       <div className="mt-5">
         <ChatForm sendMessage={sendMessage} />
       </div>
